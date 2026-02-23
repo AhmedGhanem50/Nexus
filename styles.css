@@ -283,6 +283,7 @@ img {
     width: 18px;
     height: 18px;
     transition: transform var(--transition-base);
+    animation: arrowleft 1s ease infinite;
 }
 
 .btn:hover .btn-icon {
@@ -431,6 +432,7 @@ img {
     position: absolute;
     bottom: var(--space-xl);
     left: 50%;
+    bottom: 0;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
@@ -468,6 +470,12 @@ img {
 @keyframes scrollWheel {
     0% { opacity: 1; transform: translateY(0); }
     100% { opacity: 0; transform: translateY(12px); }
+}
+
+@keyframes arrowleft {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
 }
 
 /* ============================================
