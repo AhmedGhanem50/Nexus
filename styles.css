@@ -1020,7 +1020,7 @@ section {
 }
 
 .footer-links a:hover {
-    color: var(--color-primary-light);
+    color: var(--color-primary);
 }
 
 .footer-bottom {
