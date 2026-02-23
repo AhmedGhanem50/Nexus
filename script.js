@@ -388,6 +388,82 @@ function initCTAForm() {
 })();
 
 // ============================================
+// CONTACT FORM
+// ============================================
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('contactSubmit');
+    const toast = document.getElementById('toast');
+    if (!form || !submitBtn) return;
+
+    const showToast = (message) => {
+        if (!toast) return;
+        const toastMessage = toast.querySelector('.toast-message');
+        if (toastMessage) toastMessage.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    };
+
+    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    const setError = (input, state) => {
+        input.classList.toggle('error', state);
+    };
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name    = form.querySelector('#contactName');
+        const email   = form.querySelector('#contactEmail');
+        const subject = form.querySelector('#contactSubject');
+        const message = form.querySelector('#contactMessage');
+
+        let valid = true;
+
+        [name, subject, message].forEach(field => {
+            const empty = !field.value.trim();
+            setError(field, empty);
+            if (empty) valid = false;
+        });
+
+        const emailEmpty   = !email.value.trim();
+        const emailInvalid = !emailEmpty && !validateEmail(email.value.trim());
+        setError(email, emailEmpty || emailInvalid);
+        if (emailEmpty || emailInvalid) valid = false;
+
+        if (!valid) {
+            showToast('Please fill in all fields correctly.');
+            return;
+        }
+
+        // Success state
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = `
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Message Sent!
+        `;
+        submitBtn.style.background = '#22c55e';
+        submitBtn.disabled = true;
+
+        showToast('Message sent! We\'ll be in touch soon.');
+        form.reset();
+
+        setTimeout(() => {
+            submitBtn.innerHTML = originalHTML;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+        }, 3000);
+    });
+
+    // Clear error state on input
+    form.querySelectorAll('.contact-input').forEach(input => {
+        input.addEventListener('input', () => setError(input, false));
+    });
+}
+// ============================================
 // CONSOLE EASTER EGG
 // ============================================
 console.log('%c◆ Nexus', 'font-size: 24px; font-weight: bold; color: #6366f1;');

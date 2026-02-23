@@ -1092,6 +1092,164 @@ section {
 }
 
 /* ============================================
+   CONTACT SECTION
+   ============================================ */
+   .contact {
+    position: relative;
+    padding: var(--space-3xl) 0;
+    overflow: hidden;
+    background: var(--bg-dark-lighter);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+/* Info Column */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding-top: var(--space-sm);
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+}
+
+.contact-info-item:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-3px);
+}
+
+.contact-info-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card-hover);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.contact-info-icon svg {
+    width: 22px;
+    height: 22px;
+    color: var(--color-primary);
+}
+
+.contact-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-info-label {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+}
+
+.contact-info-value {
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.contact-availability {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    padding: 0 var(--space-xs);
+}
+
+/* Form Card */
+.contact-form-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.contact-label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.contact-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    outline: none;
+    transition: all var(--transition-base);
+    resize: none;
+}
+
+.contact-input::placeholder {
+    color: var(--text-muted);
+}
+
+.contact-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.contact-input.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.contact-textarea {
+    line-height: 1.7;
+}
+
+.contact-submit {
+    width: 100%;
+    margin-top: var(--space-xs);
+    justify-content: center;
+}
+
+
+
+
+/* ============================================
    REVEAL ANIMATIONS
    ============================================ */
 [data-reveal] {
@@ -1116,6 +1274,11 @@ section {
 .testimonial-card[data-reveal]:nth-child(1) { transition-delay: 0s; }
 .testimonial-card[data-reveal]:nth-child(2) { transition-delay: 0.15s; }
 .testimonial-card[data-reveal]:nth-child(3) { transition-delay: 0.3s; }
+
+/* Stagger reveal for contact cards */
+.contact-info-item:nth-child(1) { transition-delay: 0s; }
+.contact-info-item:nth-child(2) { transition-delay: 0.1s; }
+.contact-info-item:nth-child(3) { transition-delay: 0.2s; }
 
 /* ============================================
    RESPONSIVE DESIGN
@@ -1147,6 +1310,20 @@ section {
     
     .footer-brand {
         grid-column: span 2;
+    }
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+    }
+}
+
+@media (max-width: 640px) {
+    .contact-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-card {
+        padding: var(--space-lg);
     }
 }
 
